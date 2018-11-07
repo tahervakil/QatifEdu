@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/headerback"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+         android:id="@+id/scroll_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="110dp"
+        android:background="@color/bannercolor"
+        android:focusable="false"
+        android:padding="2dp" >
+
+        <LinearLayout
+            android:id="@+id/banner_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="fill_parent"
+        android:layout_height="340dp"
+        android:layout_margin="4dp"
+        android:layout_weight="1.16"
+        android:gravity="center"
+        android:numColumns="3"
+        android:horizontalSpacing="5dip"
+		android:verticalSpacing="5dip"
+        android:stretchMode="columnWidth" />
+
+   
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:background="#fe8504">
+        
+     
+    <HorizontalScrollView
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1.5"
+        android:background="@drawable/tikker"
+        android:focusable="false"
+        android:scrollbars="none"
+        android:padding="5dp">
+        
+         
+
+        <LinearLayout
+            android:id="@+id/tiker_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="10dp">
+            
+         
+        </LinearLayout>
+    </HorizontalScrollView>
+ <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/tikker_bg"
+        android:scaleType="fitXY"/>
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight=".5"
+        android:adjustViewBounds="true"
+        android:padding="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/adds" />
+
+  </LinearLayout>
+
+</LinearLayout>

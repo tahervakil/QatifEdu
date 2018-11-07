@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/com.taher.qatifedu"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
+   
+        
+
+    <com.taher.qatifedu.utility.CustomTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:ellipsize="end"
+        android:paddingLeft="5dp"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        custom:fontAssetName="advertisingbold.ttf" />
+
+</RelativeLayout>

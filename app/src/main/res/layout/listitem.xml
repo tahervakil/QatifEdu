@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:gravity="right|center"
+    android:orientation="horizontal"
+    android:background="@color/app_bg"
+    android:id="@+id/container" >
+
+    
+    <ImageView
+        android:id="@+id/iv_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:src="@drawable/not_viewed" />
+    
+    
+     <ImageView
+        android:id="@+id/iv_status"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+         android:adjustViewBounds="true"
+        android:layout_gravity="top"
+        android:scaleType="fitXY"/>
+      
+    <LinearLayout
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        
+       <com.taher.qatifedu.utility.AutoResizeTextView
+        android:id="@+id/tv_title"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:ellipsize="none"
+        android:maxLines="4"
+        android:textSize="18sp"
+        android:gravity="right|center"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/black" /> 
+        
+       <!--  <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:gravity="right|center"
+            android:layout_marginRight="5dp"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="18sp" /> -->
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:gravity="left|bottom"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+       <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+            <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:padding="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" >
+        </ImageView>
+        
+         <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/screener"
+            android:layout_centerInParent="true" />
+         
+    </RelativeLayout>
+    
+       
+  
+
+</LinearLayout>
