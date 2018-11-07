@@ -2,67 +2,87 @@ package com.taher.qatifedu.entity;
 
 public class Company_Entity {
 
-	private String id = null , name = null,logo=null,lastChange=null, 
-	 lastChangeType=null;
-	private int unread,status=1;
-	public Company_Entity() {}
+  private String id = null;
+  private String name = null;
+  private String logo = null;
+  private String lastChange = null;
+  private String lastChangeType = null;
+  private String parentId;
+  private int unread;
+  private int status = 1;
+  private int subCategoryType;
 
-	public String getId() {
-		return id;
-	}
+  public Company_Entity() {}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public int getUnread() {
-		return unread;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public void setUnread(int unread) {
-		this.unread = unread;
-	}
-	
-	public String getName() {
-		return name;
-	}
+  public int getUnread() {
+    return unread;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setUnread(int unread) {
+    this.unread = unread;
+  }
 
-	public String getLogo() {
-		return logo;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-	
-	public String getLastChange() {
-		return lastChange;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setLastChange(String lastChange) {
-		this.lastChange = lastChange;
-	}
-	
-	public String getLastChangeType() {
-		return lastChangeType;
-	}
+  public String getLogo() {
+    return logo;
+  }
 
-	public void setLastChangeType(String lastChangeType) {
-		this.lastChangeType = lastChangeType;
-	}
-	
-	
-	public int getStatus() {
-		return status;
-	}
+  public void setLogo(String logo) {
+    this.logo = logo;
+  }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+  public String getLastChange() {
+    return lastChange;
+  }
 
+  public void setLastChange(String lastChange) {
+    this.lastChange = lastChange;
+  }
 
+  public String getLastChangeType() {
+    return lastChangeType;
+  }
+
+  public void setLastChangeType(String lastChangeType) {
+    this.lastChangeType = lastChangeType;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
+  }
+
+  public String getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(String parentId) {
+    this.parentId = parentId;
+  }
+
+  public int getSubCategoryType() {
+    return subCategoryType;
+  }
+
+  public void setSubCategoryType(int subCategoryType) {
+    this.subCategoryType = subCategoryType;
+  }
 }

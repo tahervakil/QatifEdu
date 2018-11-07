@@ -47,16 +47,16 @@
             android:textStyle="bold"
             android:textColor="@color/white"/>
     </RelativeLayout>
-    
-      <com.taher.qatifedu.utility.TextViewPlus
+
+    <com.taher.qatifedu.utility.TextViewPlus
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:background="#ff5400"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="13sp" 
-        android:background="#ff5400"
-        foo:customFont="advertisingbold.ttf"/>
+        android:textSize="13sp"
+        foo:customFont="advertisingbold.ttf" />
     
 
 
