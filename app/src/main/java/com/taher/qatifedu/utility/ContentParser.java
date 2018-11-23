@@ -47,10 +47,6 @@ public class ContentParser {
 		return istream;
 	}
 	
-	
-
-	
-	
 	public ArrayList<More_Entity> getGeneralContents() throws IOException, ParserConfigurationException, SAXException {
 		ArrayList<More_Entity> contents = null;
 		SAXParserFactory fac = SAXParserFactory.newInstance();

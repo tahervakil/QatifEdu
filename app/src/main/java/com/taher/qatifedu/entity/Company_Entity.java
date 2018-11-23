@@ -1,13 +1,17 @@
 package com.taher.qatifedu.entity;
 
-public class Company_Entity {
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Company_Entity implements Serializable {
 
   private String id = null;
   private String name = null;
   private String logo = null;
   private String lastChange = null;
   private String lastChangeType = null;
-  private String parentId;
+  private int parentId;
   private int unread;
   private int status = 1;
   private int subCategoryType;
@@ -70,11 +74,11 @@ public class Company_Entity {
     this.status = status;
   }
 
-  public String getParentId() {
+  public int getParentId() {
     return parentId;
   }
 
-  public void setParentId(String parentId) {
+  public void setParentId(int parentId) {
     this.parentId = parentId;
   }
 

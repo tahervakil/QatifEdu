@@ -2,20 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:background="@color/white">
-    
+    android:orientation="vertical">
 
-   <ListView android:id="@+id/lvList"
-				android:layout_height="fill_parent"
-				android:layout_width="fill_parent"
-				android:dividerHeight="0.5dip"
-				android:divider="@color/black"
-				android:cacheColorHint="#00000000"/>
-   
-   
-   
-     
+    <ListView
+        android:id="@+id/lvList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/black"
+        android:dividerHeight="0.5dip" />
 
 </LinearLayout>

@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Qatifedu</string>
+    <string name="app_name">تعليم القطيف</string>
    	<string name="alert_need_internet_connection">مطلوب اتصال بالإنترنت لاستخدام هذا التطبيق. يرجى التحقق من الإعدادات الخاصة بك وحاول مرة أخرى.</string>
   	<string name="pleaseWait">يرجى الانتظار</string>
     <string name="phonecall_msg">هل انت متأكد من عملية الإتصال</string>
@@ -12,11 +12,11 @@
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
     <string name="submit">اختار</string>
-    <string name="name">الاسم</string>  
-    <string name="mobile">جوال</string> 
+    <string name="name"><b>الاسم</b></string>
+    <string name="mobile"><b>جوال</b></string>
     <string name="category">القسم</string>  
     <string name="subject">عنوان الرسالة</string> 
-    <string name="body">نص الرسالة</string> 
+    <string name="body"><font size="28">نص الرسالة</font></string>
     <string name="send">ارسال</string>   
     <string name="email">ايميل</string>   
     <string name="validemail">من فضلك قم بادخال ايميل صالح</string> 
@@ -63,6 +63,7 @@
    <string name="news_image_url">http://qatifedu.com/cmsQatifedu/Upload/News/</string>
   <string name="ads_image_url">http://qatifedu.com/cmsQatifedu/Upload/Ads/</string>
    <string name="ads_detail_url"> http://qatifedu.com/cmsQatifedu/Services/frmGetAdsDetail.aspx?ID=</string>
+    <string name="notification_channel_id">default</string>
 </resources>
 
 

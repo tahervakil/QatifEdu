@@ -15,7 +15,7 @@ public class ContentHandler_Company extends DefaultHandler {
   private static final String LastChange = "LastChange";
   private static final String LastChangeType = "LastChangeType";
   private static final String record = "record";
-  private static final String parentId = "parentId";
+  private static final String parentId = "ParentID";
   private static final String subCategoryType = "type";
   private ArrayList<Company_Entity> contents;
   private StringBuilder sb;
@@ -42,7 +42,7 @@ public class ContentHandler_Company extends DefaultHandler {
       } else if (localName.equalsIgnoreCase(LastChangeType)) {
         companyEntity.setLastChangeType(sb.toString());
       } else if (localName.equalsIgnoreCase(parentId)) {
-        companyEntity.setParentId(sb.toString());
+        companyEntity.setParentId(Integer.parseInt(sb.toString()));
       } else if (localName.equalsIgnoreCase(subCategoryType)) {
         companyEntity.setSubCategoryType(Integer.parseInt(sb.toString()));
       } else if (localName.equalsIgnoreCase(record)) {

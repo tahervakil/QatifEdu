@@ -1,8 +1,15 @@
 package com.taher.qatifedu.fragments;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.taher.qatifedu.R;
+import com.taher.qatifedu.UILApplication;
 import com.taher.qatifedu.utility.AsyncTask;
 import com.taher.qatifedu.utility.Constants;
 import com.taher.qatifedu.utility.ContentUpdater;
@@ -16,19 +23,20 @@ import com.taher.qatifedu.entity.Banner_Entity;
 import com.taher.qatifedu.entity.Company_Entity;
 import com.taher.qatifedu.entity.TikerNews_Entity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +59,10 @@ public class Ads extends Fragment {
   private DatabaseHelper dbHelper;
   private SQLiteDatabase db;
   private com.taher.qatifedu.utility.ContentUpdater updater;
-  private AppCompatActivity actionBar;
+  private AppCompatActivity appCompatActivity;
   private GridView gridView;
   public static ArrayList<Company_Entity> alCompaniesMainDataList;
+  public ArrayList<Company_Entity> companyMainCategory;
   private ArrayList<Banner_Entity> alBannersMainDataList;
   private ArrayList<TikerNews_Entity> alTikerMainDataList;
 
@@ -62,21 +71,28 @@ public class Ads extends Fragment {
   public static GridViewCustomAdapter adapter;
   private ProgressDialog progress = null;
   private String name;
-  private LinearLayout ln_Banner, ln_Tiker;
+  private LinearLayout ln_Banner;
+  // private LinearLayout ln_Tiker;
   private int width = 0, height = 0, x, x2, total_positive, total_positive2;
-  private Handler handler, handler2;
+  private Handler handler;
   HorizontalScrollView layout;
+  ImageButton calendarButton;
+
+  SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+  SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm:SS");
 
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    actionBar = (AppCompatActivity) getActivity();
+    appCompatActivity = (AppCompatActivity) getActivity();
+
     if (myFragmentView == null) {
       myFragmentView = inflater.inflate(R.layout.news, container, false);
       Display localDisplay = getActivity().getWindowManager().getDefaultDisplay();
       width = 100 * localDisplay.getWidth() / 100;
       height = 17 * localDisplay.getHeight() / 100;
       layout = myFragmentView.findViewById(R.id.scroll_layout);
+
       ViewTreeObserver vto = layout.getViewTreeObserver();
       vto.addOnGlobalLayoutListener(
           new OnGlobalLayoutListener() {
@@ -87,51 +103,112 @@ public class Ads extends Fragment {
               new FetchBannersData().execute();
             }
           });
+
       options =
           new DisplayImageOptions.Builder()
               .cacheInMemory()
               .cacheOnDisc()
               .bitmapConfig(Bitmap.Config.RGB_565)
               .build();
-      alCompaniesMainDataList = new ArrayList<Company_Entity>();
-      alBannersMainDataList = new ArrayList<Banner_Entity>();
-      alTikerMainDataList = new ArrayList<TikerNews_Entity>();
-      ln_Banner = (LinearLayout) myFragmentView.findViewById(R.id.banner_layout);
-      ln_Tiker = (LinearLayout) myFragmentView.findViewById(R.id.tiker_layout);
 
-      dbHelper = new DatabaseHelper(actionBar);
+      alCompaniesMainDataList = new ArrayList<>();
+      companyMainCategory = new ArrayList<>();
+
+      alBannersMainDataList = new ArrayList<>();
+      alTikerMainDataList = new ArrayList<>();
+      ln_Banner = myFragmentView.findViewById(R.id.banner_layout);
+      // ln_Tiker = myFragmentView.findViewById(R.id.tiker_layout);
+
+      dbHelper = new DatabaseHelper(getContext());
       db = dbHelper.getWritableDatabase();
-      updater = new ContentUpdater(actionBar, db);
-      gridView = (GridView) myFragmentView.findViewById(R.id.gridView);
-      adapter = new GridViewCustomAdapter(actionBar);
+      updater = new ContentUpdater(getContext(), db);
+      gridView = myFragmentView.findViewById(R.id.gridView);
+      adapter = new GridViewCustomAdapter(getContext());
+
       gridView.setAdapter(adapter);
+      Bundle bundle = this.getArguments();
+      name = bundle.getString(Constants.NAME);
+      ((TextView)
+              appCompatActivity.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle))
+          .setText(name);
+
+      calendarButton =
+          appCompatActivity.getSupportActionBar().getCustomView().findViewById(R.id.calendar);
+
+      new FetchCompanies_AdsData().execute();
+
+      calendarButton.setOnClickListener(
+          new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+              String currentDate = dateFormatter.format(new Date());
+              String currentTime = timeFormatter.format(new Date());
+              new AlertDialog.Builder(getContext())
+                  .setTitle("Date & Time")
+                  .setMessage("Date: " + currentDate + "\nTime: " + currentTime)
+                  .setNeutralButton(
+                      "Done",
+                      new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                          dialog.dismiss();
+                        }
+                      })
+                  .show();
+            }
+          });
+
       gridView.setOnItemClickListener(
           new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
-              if (alCompaniesMainDataList != null
-                  && alCompaniesMainDataList.get(position) != null) {
-                Company_Entity company = (Company_Entity) alCompaniesMainDataList.get(position);
+              if (companyMainCategory != null && companyMainCategory.get(position) != null) {
+                Company_Entity company = companyMainCategory.get(position);
                 Bundle data = new Bundle();
-                data.putString(Constants.SECTIONID, company.getId());
-                data.putString(Constants.NAME, company.getName());
-                Fragment fragment = new Ads_List();
-                fragment.setArguments(data);
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                if (getFragmentManager().findFragmentByTag(name) == null) ;
-                ft.addToBackStack(null);
-                ft.replace(R.id.frame_container, Constants.MFragmentStack.push(fragment), name)
-                    .commit();
+
+                if (company.getParentId() == 0 && company.getSubCategoryType() == 0) {
+                  data.putString(Constants.SECTIONID, company.getId());
+                  data.putString(Constants.NAME, company.getName());
+                  Fragment fragment = new Ads_List();
+                  fragment.setArguments(data);
+                  FragmentTransaction ft = getFragmentManager().beginTransaction();
+                  if (getFragmentManager().findFragmentByTag(name) == null) ;
+                  ft.addToBackStack(null);
+                  ft.replace(R.id.frame_container, Constants.MFragmentStack.push(fragment), name)
+                      .commit();
+                }
+
+                if (company.getParentId() != 0) {
+                  data.putString(Constants.SECTIONID, company.getId());
+                  data.putString(Constants.NAME, company.getName());
+                  Fragment fragment = new Ads_List();
+                  fragment.setArguments(data);
+                  FragmentTransaction ft = getFragmentManager().beginTransaction();
+                  if (getFragmentManager().findFragmentByTag(name) == null) ;
+                  ft.addToBackStack(null);
+                  ft.replace(R.id.frame_container, Constants.MFragmentStack.push(fragment), name)
+                      .commit();
+                }
+
+                if (company.getParentId() == 0 && company.getSubCategoryType() == 1) {
+                  Fragment fragment = new Ads();
+                  data.putInt(Constants.ID, Integer.parseInt(company.getId()));
+                  data.putString(Constants.NAME, company.getName());
+                  fragment.setArguments(data);
+                  // Constants.MFragmentStack.push(fragment);
+                  FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                  if (getFragmentManager().findFragmentByTag(name) == null) ;
+                  fragmentTransaction.addToBackStack(null);
+
+                  fragmentTransaction.replace(R.id.frame_container, fragment).commit();
+                }
               }
             }
           });
-      Bundle bundle = this.getArguments();
-      name = bundle.getString(Constants.NAME);
-      ((TextView) actionBar.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle))
-          .setText(name);
-      new FetchCompanies_AdsData().execute();
+
       new FetchTikerData().execute();
-      if (bundle.getInt(Constants.ID, 0) != (0)) {
+      /*if (bundle.getInt(Constants.ID) != (0)) {
         Bundle data = new Bundle();
         Fragment fragment = new Ads_Details_WithID();
         data = new Bundle();
@@ -141,10 +218,43 @@ public class Ads extends Fragment {
         if (getFragmentManager().findFragmentByTag(name) == null) ;
         ft.addToBackStack(null);
         ft.replace(R.id.frame_container, Constants.MFragmentStack.push(fragment), name).commit();
-      }
-    } else ((ViewGroup) myFragmentView.getParent()).removeView(myFragmentView);
+      }*/
+    } else {
+      ((ViewGroup) myFragmentView).removeView(myFragmentView);
+    }
 
     return myFragmentView;
+  }
+
+  @Override
+  public void onResume() {
+    ((TextView) appCompatActivity.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle))
+        .setText(name);
+    appCompatActivity
+        .getSupportActionBar()
+        .getCustomView()
+        .findViewById(R.id.extra_category)
+        .setVisibility(View.VISIBLE);
+    appCompatActivity
+        .getSupportActionBar()
+        .getCustomView()
+        .findViewById(R.id.calendar)
+        .setVisibility(View.VISIBLE);
+
+    appCompatActivity
+        .getSupportActionBar()
+        .getCustomView()
+        .findViewById(R.id.btn_refresh)
+        .setVisibility(View.GONE);
+    new UpdateNumView().execute();
+    super.onResume();
+
+    final Tracker tracker = new UILApplication().getDefaultTracker();
+
+    if (tracker != null) {
+      tracker.setScreenName(getClass().getSimpleName());
+      tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
   }
 
   private Cursor getCompaniesCursor() {
@@ -153,10 +263,12 @@ public class Ads extends Fragment {
       String sql =
           String.format(
               Locale.US,
-              "select %s,%s,%s from %s  ",
+              "select %s,%s,%s,%s,%s from %s  ",
               Constants.ID,
               Constants.TITLE,
               Constants.LOGO,
+              Constants.PARENTID,
+              Constants.SUB_CATEGORY_TYPE,
               Constants.COMPANIES_TABLE);
       crsr = db.rawQuery(sql, null);
     } catch (Exception ex) {
@@ -210,14 +322,15 @@ public class Ads extends Fragment {
     protected void onPreExecute() {
       super.onPreExecute();
       progress =
-          ProgressDialog.show(actionBar, getString(R.string.pleaseWait), "", true, true, null);
+          ProgressDialog.show(
+              appCompatActivity, getString(R.string.pleaseWait), "", true, true, null);
     }
 
     @Override
     protected Void doInBackground(Void... params) {
       try {
         try {
-          if (Utility.isConnected(actionBar)) {
+          if (Utility.isConnected(appCompatActivity)) {
             String strChangeDate = updater.getChangeDate(Constants.ADS_TABLE);
             updater.ContentsForAds(strChangeDate);
           }
@@ -229,6 +342,8 @@ public class Ads extends Fragment {
               cursorEntity.setId(crsr.getString(0));
               cursorEntity.setName(crsr.getString(1));
               cursorEntity.setLogo(crsr.getString(2));
+              cursorEntity.setParentId(crsr.getInt(3));
+              cursorEntity.setSubCategoryType(crsr.getInt(4));
               cursorEntity.setUnread(updater.AdsUnReadCount(cursorEntity.getId()));
               alCompaniesData.add(cursorEntity);
               crsr.moveToNext();
@@ -250,10 +365,21 @@ public class Ads extends Fragment {
       progress.dismiss();
 
       alCompaniesMainDataList.clear();
+      companyMainCategory.clear();
       if (alCompaniesData != null && alCompaniesData.size() > 0) {
         alCompaniesMainDataList = alCompaniesData;
       } else if (alCompaniesMainDataList.size() == 0) {
-        Utility.showToast(actionBar, getString(R.string.nodata_found));
+        Utility.showToast(appCompatActivity, getString(R.string.nodata_found));
+      }
+
+      for (Company_Entity entity : alCompaniesMainDataList) {
+        if (entity.getParentId() == 0 && getArguments().getInt(Constants.ID) == 0) {
+          companyMainCategory.add(entity);
+        } else if (entity.getParentId() != 0 && getArguments().getInt(Constants.ID) != 0) {
+          if (getArguments().getInt(Constants.ID) == entity.getParentId()) {
+            companyMainCategory.add(entity);
+          }
+        }
       }
 
       adapter.notifyDataSetChanged();
@@ -339,10 +465,13 @@ public class Ads extends Fragment {
     for (int i = 0; i < alBannersMainDataList.size(); i++) {
       final int pos = i;
       Banner_Entity banner = alBannersMainDataList.get(i);
-      final ImageView image = new ImageView(getActivity());
-      LayoutParams param = new LayoutParams(width, height);
+      final ImageView image =
+          layout.findViewById(R.id.banner_layout).findViewById(R.id.banner_image);
+      LayoutParams param = image.getLayoutParams();
+      param.width = width;
+      param.height = height;
+      image.requestLayout();
       image.setScaleType(ImageView.ScaleType.FIT_XY);
-      image.setLayoutParams(param);
       image.setTag(i);
 
       image.setOnClickListener(
@@ -374,17 +503,19 @@ public class Ads extends Fragment {
             new SimpleImageLoadingListener() {
               @Override
               public void onLoadingStarted(String imageUri, View view) {
-                image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+                image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
               }
 
               @Override
               public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+                image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
               }
             });
+      } else {
+        image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
       }
 
-      ln_Banner.addView(image);
+      // ln_Banner.addView(image);
     }
 
     total_positive = alBannersMainDataList.size() * width;
@@ -397,7 +528,6 @@ public class Ads extends Fragment {
       handler.postDelayed(runnable, 0);
 
     } else {
-
       total_positive = alBannersMainDataList.size() * width;
     }
   }
@@ -463,11 +593,11 @@ public class Ads extends Fragment {
       if (alTikerData != null && alTikerData.size() > 0) {
         alTikerMainDataList = alTikerData;
       }
-      LoadTiker();
+      // LoadTiker();
     }
   }
 
-  public void LoadTiker() {
+  /*public void LoadTiker() {
     for (int i = 0; i < alTikerMainDataList.size(); i++) {
 
       TikerNews_Entity tiker = alTikerMainDataList.get(i);
@@ -499,21 +629,25 @@ public class Ads extends Fragment {
       new Runnable() {
         @Override
         public void run() {
-          /* do what you need to do */
-          ln_Tiker.scrollBy(-2, 0);
+          */
+  /* do what you need to do */
+  /*
+  ln_Tiker.scrollBy(-2, 0);
 
-          if (x2 >= (total_positive2 + width)) {
-            ln_Tiker.scrollTo(total_positive2, 0);
-            x2 = 0;
+  if (x2 >= (total_positive2 + width)) {
+    ln_Tiker.scrollTo(total_positive2, 0);
+    x2 = 0;
 
-          } else {
-            x2 = x2 + 2;
-          }
+  } else {
+    x2 = x2 + 2;
+  }
 
-          /* and here comes the "trick" */
-          handler2.postDelayed(this, 20);
-        }
-      };
+  */
+  /* and here comes the "trick" */
+  /*
+      handler2.postDelayed(this, 20);
+    }
+  };*/
 
   public class GridViewCustomAdapter extends ArrayAdapter<Object> {
     Context context;
@@ -524,32 +658,43 @@ public class Ads extends Fragment {
     }
 
     public int getCount() {
-      return alCompaniesMainDataList.size();
+      return companyMainCategory.size();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-      if (alCompaniesMainDataList == null || alCompaniesMainDataList.size() == 0)
-        return convertView;
+      if (companyMainCategory == null || companyMainCategory.size() == 0) return convertView;
 
       LayoutInflater inf =
-          (LayoutInflater) actionBar.getSystemService(actionBar.LAYOUT_INFLATER_SERVICE);
+          (LayoutInflater)
+              appCompatActivity.getSystemService(appCompatActivity.LAYOUT_INFLATER_SERVICE);
       convertView = inf.inflate(R.layout.ads_grid_item, null);
       TextView tv_title = (TextView) convertView.findViewById(R.id.tv_title);
       final TextView tv_unread = (TextView) convertView.findViewById(R.id.tv_unread);
       final ImageView iv_image = (ImageView) convertView.findViewById(R.id.iv_image);
       final View pd = convertView.findViewById(R.id.screener_pd);
 
-      final Company_Entity company = alCompaniesMainDataList.get(position);
+      final Company_Entity company = companyMainCategory.get(position);
 
-      if (company != null && company.getName() != null) tv_title.setText(company.getName());
+      if (company != null && company.getName() != null) {
+        tv_title.setText(company.getName());
+      }
 
-      String strCount = Integer.toString(company.getUnread());
+      int unreadCount = 0;
+      for (Company_Entity company_entity : alCompaniesMainDataList) {
+        if (company_entity.getParentId() == Integer.parseInt(company.getId())) {
+          unreadCount += company_entity.getUnread();
+        }
+      }
 
-      if (strCount.equals("0")) {
+      if (company.getParentId() != 0) {
+        unreadCount += company.getUnread();
+      }
+
+      if (unreadCount == 0) {
         tv_unread.setVisibility(View.GONE);
       } else {
-        tv_unread.setText(Integer.toString(company.getUnread()));
+        tv_unread.setText(unreadCount + "");
       }
 
       tv_unread.setOnClickListener(
@@ -566,7 +711,7 @@ public class Ads extends Fragment {
       try {
         if (company != null && company.getLogo() != null) {
           imageLoader.displayImage(
-              actionBar.getString(R.string.companies_image_url) + company.getLogo(),
+              appCompatActivity.getString(R.string.companies_image_url) + company.getLogo(),
               iv_image,
               options,
               new SimpleImageLoadingListener() {
@@ -578,7 +723,7 @@ public class Ads extends Fragment {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                   pd.setVisibility(View.GONE);
-                  iv_image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+                  iv_image.setImageDrawable(getResources().getDrawable(R.drawable.defaultimage));
                 }
 
                 @Override
@@ -586,7 +731,7 @@ public class Ads extends Fragment {
                   pd.setVisibility(View.GONE);
                 }
               });
-        } else iv_image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+        } else iv_image.setImageDrawable(getResources().getDrawable(R.drawable.defaultimage));
 
       } catch (Exception e) {
         e.getMessage();
@@ -594,15 +739,5 @@ public class Ads extends Fragment {
 
       return convertView;
     }
-  }
-
-  @Override
-  public void onResume() {
-    ((TextView) actionBar.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle))
-        .setText(name);
-    ((ImageButton) actionBar.getSupportActionBar().getCustomView().findViewById(R.id.btn_refreash))
-        .setVisibility(View.GONE);
-    new UpdateNumView().execute();
-    super.onResume();
   }
 }

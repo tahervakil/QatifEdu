@@ -1,239 +1,178 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView2"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true"
-     android:background="@color/offwhite"
-       xmlns:custom="http://schemas.android.com/apk/res/com.taher.qatifedu" >
+    android:background="@color/white"
+    android:fillViewport="true">
 
 
-
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInput_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="top|center"
-        android:orientation="vertical" >
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="2" >
-
-            <EditText
-                android:id="@+id/et_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1.7"
-                android:background="@drawable/rounded"
-                android:ems="10"
-                android:gravity="right"
-                android:padding="5dp" >
-
-                <requestFocus />
-            </EditText>
-
-            <com.taher.qatifedu.utility.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:text="@string/name"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                custom:fontAssetName="advertisingbold.ttf"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:weightSum="2"
-            android:orientation="horizontal" >
-
-            <EditText
-                android:id="@+id/et_mobile"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.7"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/rounded"
-                android:ems="10"
-                android:inputType="phone"
-                android:gravity="right"
-                android:padding="5dp" >
-            </EditText>
-
-            <com.taher.qatifedu.utility.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:layout_marginRight="5dp"
-                android:text="@string/mobile"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                custom:fontAssetName="advertisingbold.ttf"/>
-        </LinearLayout>
-
-         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="2" >
-
-            <EditText
-                android:id="@+id/et_email"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1.7"
-                android:background="@drawable/rounded"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:gravity="right"
-                android:padding="5dp" >
-
-                <requestFocus />
-            </EditText>
-
-            <com.taher.qatifedu.utility.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                 android:layout_weight="0.3"
-                android:text="@string/email"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                custom:fontAssetName="advertisingbold.ttf" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal" >
-
-            <Spinner
-                android:id="@+id/section_spinner"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:ems="10" />
-
-            <com.taher.qatifedu.utility.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.14"
-                android:text="@string/category"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                 custom:fontAssetName="advertisingbold.ttf"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <EditText
-                android:id="@+id/et_subject"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1.7"
-                android:background="@drawable/rounded"
-                android:ems="10"
-                android:gravity="right"
-                android:padding="5dp" >
-            </EditText>
-
-            <com.taher.qatifedu.utility.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.3"
-                android:text="@string/subject"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                custom:fontAssetName="advertisingbold.ttf"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:gravity="start"
+            android:hint="@string/name"
+            android:textSize="20sp" />
 
-            <com.taher.qatifedu.utility.CustomTextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.14"
-                android:text="@string/body"
-                android:layout_marginBottom="5dp"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                custom:fontAssetName="advertisingbold.ttf"/>
+    </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/et_body"
-                android:layout_width="fill_parent"
-                android:layout_height="180dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/rounded"
-                android:ems="10"
-                android:gravity="top|right"
-                android:padding="5dp"
-                 android:textStyle="bold" >
-            </EditText>
-        </LinearLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInput_mobile"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInput_name">
 
-        <com.taher.qatifedu.utility.CustomTextView
-            android:id="@+id/btn_send"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded"
-            android:text="@string/send"
-            android:gravity="center"
-            custom:fontAssetName="advertisingbold.ttf"/>
+        <EditText
+            android:id="@+id/et_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:hint="@string/mobile"
+            android:inputType="phone"
+            android:textSize="20sp" />
 
+    </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInput_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInput_mobile">
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
 
-</ScrollView>
+    </android.support.design.widget.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/section_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:ems="15"
+        app:layout_constraintEnd_toStartOf="@+id/customTextView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInput_email" />
+
+    <com.taher.qatifedu.utility.CustomTextView
+        android:id="@+id/customTextView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/category"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:fontAssetName="advertisingbold.ttf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInput_email" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInput_subject"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customTextView4">
+
+        <EditText
+            android:id="@+id/et_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:hint="@string/subject"
+            android:textSize="20sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInput_body"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInput_subject">
+
+        <EditText
+            android:id="@+id/et_body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top|start"
+            android:hint="@string/body"
+            android:textSize="20sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/btn_send"
+        android:layout_width="100dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="@string/send"
+        app:bootstrapBrand="success"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

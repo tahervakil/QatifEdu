@@ -13,28 +13,28 @@
         android:layout_height="wrap_content" >
 
         <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-            <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:adjustViewBounds="true"
-            android:layout_centerInParent="true"
-            android:scaleType="fitXY" >
-        </ImageView>
-        
-         <include
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            layout="@layout/screener"
-            android:layout_centerInParent="true" />
-         
-    </RelativeLayout>
-    
-      
+            android:layout_centerInParent="true">
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY" >
+            </ImageView>
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/screener"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+
         <TextView
             android:id="@+id/tv_unread"
             android:layout_width="30dp"
@@ -48,16 +48,16 @@
             android:textColor="@color/white"/>
     </RelativeLayout>
 
-    <com.taher.qatifedu.utility.TextViewPlus
+    <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#ff5400"
+        android:layout_height="15dp"
+        android:background="#FFFFFF"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        foo:customFont="advertisingbold.ttf" />
-    
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        android:textStyle="bold" />
+
 
 
 </LinearLayout>
