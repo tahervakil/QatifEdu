@@ -465,13 +465,10 @@ public class Ads extends Fragment {
     for (int i = 0; i < alBannersMainDataList.size(); i++) {
       final int pos = i;
       Banner_Entity banner = alBannersMainDataList.get(i);
-      final ImageView image =
-          layout.findViewById(R.id.banner_layout).findViewById(R.id.banner_image);
-      LayoutParams param = image.getLayoutParams();
-      param.width = width;
-      param.height = height;
-      image.requestLayout();
+      final ImageView image = new ImageView(getActivity());
+      LayoutParams param = new LayoutParams(width, height);
       image.setScaleType(ImageView.ScaleType.FIT_XY);
+      image.setLayoutParams(param);
       image.setTag(i);
 
       image.setOnClickListener(
@@ -511,11 +508,9 @@ public class Ads extends Fragment {
                 image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
               }
             });
-      } else {
-        image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
       }
 
-      // ln_Banner.addView(image);
+      ln_Banner.addView(image);
     }
 
     total_positive = alBannersMainDataList.size() * width;

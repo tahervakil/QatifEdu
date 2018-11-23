@@ -4,88 +4,100 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@drawable/border_unread"
     android:gravity="end|center">
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/border_unread"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.taher.qatifedu.utility.AutoResizeTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="none"
+            android:gravity="end|center"
+            android:maxLines="4"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle=""
+            app:layout_constraintBottom_toTopOf="@+id/tv_date"
+            app:layout_constraintEnd_toStartOf="@+id/iv_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="start|bottom"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include" />
+
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/defaultimage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/screener"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_image"
+            app:layout_constraintEnd_toEndOf="@+id/iv_image"
+            app:layout_constraintStart_toStartOf="@+id/iv_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_image" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <ImageView
         android:id="@+id/iv_read"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/not_viewed"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="1dp" />
-
-    <com.taher.qatifedu.utility.AutoResizeTextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:ellipsize="none"
-        android:gravity="end|center"
-        android:maxLines="4"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle=""
-        app:layout_constraintBottom_toTopOf="@+id/tv_date"
-        app:layout_constraintEnd_toStartOf="@+id/iv_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="start|bottom"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
-
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/defaultimage"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/screener"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_image"
-        app:layout_constraintEnd_toEndOf="@+id/iv_image"
-        app:layout_constraintStart_toStartOf="@+id/iv_image"
-        app:layout_constraintTop_toTopOf="@+id/iv_image" />
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.625" />
 
 </android.support.constraint.ConstraintLayout>

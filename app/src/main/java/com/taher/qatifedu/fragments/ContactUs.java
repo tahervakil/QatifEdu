@@ -32,7 +32,14 @@ import java.util.ArrayList;
 
 public class ContactUs extends Fragment {
   View myFragmentView;
-  ImageButton btn_Facebook, btn_Telegram, btn_Snap, btn_Twitter, btn_Instagram, btn_Whatsapp;
+  ImageButton btn_Facebook;
+  ImageButton btn_Telegram;
+  ImageButton btn_Snap;
+  ImageButton btn_Twitter;
+  ImageButton btn_Instagram;
+  ImageButton btn_Whatsapp;
+  ImageButton smsButton;
+  ImageButton emailButton;
   Button btn_Website, btn_Phone;
   private AppCompatActivity act;
   private String name = "";
@@ -77,12 +84,6 @@ public class ContactUs extends Fragment {
                             if (!phonecall.contains("tel:")) phonecall = "tel:" + phonecall;
                             callIntent.setData(Uri.parse(phonecall));
 
-                            /*if (ContextCompat.checkSelfPermission(getContext(), CALL_PHONE)
-                                                            != PackageManager.PERMISSION_GRANTED) {
-                                                          ActivityCompat.requestPermissions(
-                                                              getActivity(), new String[] {CALL_PHONE}, 1);
-                                                        }
-                            */
                             startActivity(callIntent);
                           }
                         }
@@ -97,7 +98,10 @@ public class ContactUs extends Fragment {
             }
           });
 
-      btn_Website = (Button) myFragmentView.findViewById(R.id.btn_website);
+      btn_Website = myFragmentView.findViewById(R.id.btn_website);
+      smsButton = myFragmentView.findViewById(R.id.btn_sms);
+      emailButton = myFragmentView.findViewById(R.id.btn_email);
+
       btn_Website.setOnClickListener(
           new View.OnClickListener() {
             @Override
@@ -112,7 +116,7 @@ public class ContactUs extends Fragment {
               }
             }
           });
-      btn_Facebook = (ImageButton) myFragmentView.findViewById(R.id.btn_facebook);
+      btn_Facebook = myFragmentView.findViewById(R.id.btn_facebook);
       btn_Facebook.setOnClickListener(
           new View.OnClickListener() {
             @Override
@@ -128,7 +132,7 @@ public class ContactUs extends Fragment {
             }
           });
 
-      btn_Snap = (ImageButton) myFragmentView.findViewById(R.id.btn_snap);
+      btn_Snap = myFragmentView.findViewById(R.id.btn_snap);
       btn_Snap.setOnClickListener(
           new View.OnClickListener() {
             @Override
@@ -157,20 +161,6 @@ public class ContactUs extends Fragment {
                   OpenSite(url, "تيليغرام");
                 } catch (Exception ex) {
                 }
-                /*
-                    	if (alContactUsDataMain != null && alContactUsDataMain.get(0) != null ) {
-                try {
-
-
-
-                	Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-                	intent.setType("message/rfc822");
-                	intent.putExtra(android.content.Intent.EXTRA_EMAIL, "");
-                	intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {alContactUsDataMain.get(0).getEmail()});
-                	intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-                	intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
-                	startActivityForResult(Intent.createChooser(intent, "Send mail.."),1);
-                }catch(Exception e){}}*/
               }
             }
           });
@@ -222,29 +212,30 @@ public class ContactUs extends Fragment {
                 } catch (Exception ex) {
                 }
               }
+            }
+          });
 
-              /*
-                  	if (alContactUsDataMain != null && alContactUsDataMain.get(0) != null ) {
-              try {
-              	  Uri uri = Uri.parse("smsto:" + alContactUsDataMain.get(0).getPhone());
-              	   Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-              	   i.setPackage("com.whatsapp");
-              	   startActivity(Intent.createChooser(i, ""));
-              }catch(Exception e){}}*/
+      smsButton.setOnClickListener(
+          new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+              smsIntent.setData(Uri.parse("sms:0567654432"));
+              smsIntent.putExtra("sms_body", "");
+              startActivity(smsIntent);
+            }
+          });
 
-              /*if (alContactUsDataMain != null && alContactUsDataMain.get(0) != null ) {
-              try {
-              String toNumber = alContactUsDataMain.get(0).getPhone(); // contains spaces.
-              toNumber = toNumber.replace("+", "").replace(" ", "");
+      emailButton.setOnClickListener(
+          new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent emailIntent =
+                  new Intent(
+                      Intent.ACTION_SENDTO, Uri.fromParts("mailto", "qatifedu@gmail.com", null));
+              startActivity(Intent.createChooser(emailIntent, "Send email..."));
 
-              Intent sendIntent = new Intent("android.intent.action.MAIN");
-              sendIntent.putExtra("", toNumber + "@s.whatsapp.net");
-              sendIntent.putExtra(Intent.EXTRA_TEXT, "");
-              sendIntent.setAction(Intent.ACTION_SEND);
-              sendIntent.setPackage("com.whatsapp");
-              sendIntent.setType("text/plain");
-              startActivity(sendIntent);
-              	}catch(Exception e){}}*/ }
+            }
           });
 
       Bundle bundle = this.getArguments();

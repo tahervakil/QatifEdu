@@ -348,12 +348,12 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
               new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {
-                  image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+                  image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
                 }
 
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                  image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+                  image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
                 }
               });
         }
@@ -402,10 +402,7 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
 
     Ads = alAdsMainData.get(iPos);
     Ads_List.Pos = iPos;
-    // Ads_List.lvList.setSelection(iPos);
-    // Ads_List.alAdsMainDataList.remove(iPos);
-    // Ads_List.alAdsMainDataList.add(0,Ads);
-    webView = (MyWebView_AdsDetails) myFragmentView.findViewById(R.id.wv_internal);
+    webView = myFragmentView.findViewById(R.id.wv_internal);
     webView.getSettings().setBuiltInZoomControls(true);
     webView.getSettings().setDefaultTextEncodingName("utf-8");
     webView.getSettings().setAppCacheEnabled(true);
@@ -414,10 +411,6 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
     webView.getSettings().setJavaScriptEnabled(true);
     webView.setInitialScale(165);
 
-    // webView.setGestureDetector(new GestureDetector(new CustomeGestureDetector()));
-    // webView.getSettings().setLoadWithOverviewMode(true);
-    // webView.getSettings().setUseWideViewPort(true);
-    // webView.setInitialScale(1000);
     webView.setFragment(Ads_DetailsFrag);
     webView.setWebChromeClient(new WebChromeClient());
     webView.setBackgroundColor(0x00000000);

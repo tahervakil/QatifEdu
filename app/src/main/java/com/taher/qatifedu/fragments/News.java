@@ -361,12 +361,12 @@ public class News extends /*Sherlock*/ Fragment {
             new SimpleImageLoadingListener() {
               @Override
               public void onLoadingStarted(String imageUri, View view) {
-                image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+                image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
               }
 
               @Override
               public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                image.setImageDrawable(getResources().getDrawable(R.drawable.icon_safwa));
+                image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
               }
             });
       }
