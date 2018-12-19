@@ -50,6 +50,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:background="#FFFFFF"
@@ -60,7 +61,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="#0f285e"
+            android:textColor="#D3145A"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -82,7 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:gravity="right"
-            android:textColor="#0f285e" />
+            android:textColor="#0f285e"
+            android:visibility="gone" />
     </LinearLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -93,8 +95,11 @@
             android:id="@+id/wv_internal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/scroll_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <HorizontalScrollView
             android:id="@+id/scroll_layout"
@@ -105,9 +110,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wv_internal"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
                 android:id="@+id/banner_layout"

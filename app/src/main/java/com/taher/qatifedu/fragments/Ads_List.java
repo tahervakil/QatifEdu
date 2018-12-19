@@ -52,7 +52,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.support.v7.app.AppCompatActivity;
 
-public class Ads_List extends /*Sherlock*/ Fragment implements CustomAdapter.ListFiller {
+import static com.taher.qatifedu.MainActivity.alCompaniesMainDataList;
+
+public class Ads_List extends Fragment implements CustomAdapter.ListFiller {
   View myFragmentView;
   private ListView lvList;
   private CustomAdapter adapter;
@@ -276,10 +278,11 @@ public class Ads_List extends /*Sherlock*/ Fragment implements CustomAdapter.Lis
     protected void onPostExecute(Void v) {
       super.onPostExecute(v);
       progress.dismiss();
-      Ads.alCompaniesMainDataList.clear();
+
       if (alCompaniesData != null && alCompaniesData.size() > 0) {
-        Ads.alCompaniesMainDataList = alCompaniesData;
-      } else if (Ads.alCompaniesMainDataList.size() == 0) {
+        alCompaniesMainDataList.clear();
+        alCompaniesMainDataList = alCompaniesData;
+      } else if (alCompaniesMainDataList.size() == 0) {
         Utility.showToast(act, getString(R.string.nodata_found));
       }
 
@@ -319,8 +322,10 @@ public class Ads_List extends /*Sherlock*/ Fragment implements CustomAdapter.Lis
           "Select * From ("
               + String.format(
                   Locale.US,
-                  "select %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s from %s where %s =%s   AND  (substr(EndDate , 7,4) || '-' || substr(EndDate ,4,2)  || '-' || substr(EndDate , 1,2) )  "
-                      + " >=  (substr(%s , 7,4) || '-' || substr(%s ,4,2)  || '-' || substr(%s , 1,2) ) AND Deleted=0 "
+                  "select %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s from "
+                      + "%s where %s =%s   AND  (substr(EndDate , 7,4) || '-' || "
+                      + "substr(EndDate ,4,2)  || '-' || substr(EndDate , 1,2) )  "
+                      + " >= (substr(%s , 7,4) || '-' || substr(%s ,4,2)  || '-' || substr(%s , 1,2) ) AND Deleted=0 "
                       + " order by %s DESC ",
                   Constants.ID,
                   Constants.SECTIONID,
@@ -399,7 +404,9 @@ public class Ads_List extends /*Sherlock*/ Fragment implements CustomAdapter.Lis
               cursorEntity.setViewed(crsr.getInt(8));
               cursorEntity.setStatus(crsr.getInt(9));
               cursorEntity.setIsFirst(crsr.getInt(10));
-              if (Utility.isExpired(crsr.getString(11)) == false) alAdsData.add(cursorEntity);
+              if (Utility.isExpired(crsr.getString(11)) == false) {
+                alAdsData.add(cursorEntity);
+              }
               crsr.moveToNext();
             }
             crsr.close();
@@ -420,6 +427,7 @@ public class Ads_List extends /*Sherlock*/ Fragment implements CustomAdapter.Lis
       progress.dismiss();
       alAdsMainDataList.clear();
       if (alAdsData != null && alAdsData.size() > 0) {
+
         alAdsMainDataList = alAdsData;
       } else if (alAdsMainDataList.size() == 0) {
         Utility.showToast(act, getString(R.string.nodata_found));

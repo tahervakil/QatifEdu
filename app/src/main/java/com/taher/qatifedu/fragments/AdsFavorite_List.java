@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -265,10 +266,12 @@ public class AdsFavorite_List extends /*Sherlock*/ Fragment implements CustomAda
       final ViewHolder holder = new ViewHolder();
       holder.tv_title = (TextView) contextView.findViewById(R.id.tv_title);
       holder.tv_date = (TextView) contextView.findViewById(R.id.tv_date);
-      // holder.iv_viewd = (ImageView) contextView.findViewById(R.id.iv_read);
+      holder.iv_viewd = (ImageView) contextView.findViewById(R.id.iv_read);
       // holder.iv_status = (ImageView) contextView.findViewById(R.id.iv_status);
       holder.iv_image = (ImageView) contextView.findViewById(R.id.iv_image);
-      holder.ln_container = (LinearLayout) contextView.findViewById(R.id.container);
+      holder.ln_container = contextView.findViewById(R.id.container);
+
+      holder.iv_viewd.setVisibility(View.GONE);
 
       holder.pd = contextView.findViewById(R.id.screener_pd);
       final Ads_Entity Ads = (Ads_Entity) alAdsMainDataList.get(pos);
@@ -327,7 +330,7 @@ public class AdsFavorite_List extends /*Sherlock*/ Fragment implements CustomAda
     private ImageView iv_viewd, iv_image;
     private TextView tv_title, tv_date;
     private View pd;
-    private LinearLayout ln_container;
+    private ConstraintLayout ln_container;
   }
 
   @Override

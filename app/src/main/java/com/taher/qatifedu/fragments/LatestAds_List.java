@@ -47,6 +47,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.support.v7.app.AppCompatActivity;
 
+import static com.taher.qatifedu.MainActivity.alCompaniesMainDataList;
+
 public class LatestAds_List extends /*Sherlock*/ Fragment implements CustomAdapter.ListFiller {
   View myFragmentView;
   private ListView lvList;
@@ -269,10 +271,10 @@ public class LatestAds_List extends /*Sherlock*/ Fragment implements CustomAdapt
     protected void onPostExecute(Void v) {
       super.onPostExecute(v);
       progress.dismiss();
-      Ads.alCompaniesMainDataList.clear();
+      alCompaniesMainDataList.clear();
       if (alCompaniesData != null && alCompaniesData.size() > 0) {
-        Ads.alCompaniesMainDataList = alCompaniesData;
-      } else if (Ads.alCompaniesMainDataList.size() == 0) {
+        alCompaniesMainDataList = alCompaniesData;
+      } else if (alCompaniesMainDataList.size() == 0) {
         Utility.showToast(act, getString(R.string.nodata_found));
       }
 
@@ -481,7 +483,8 @@ public class LatestAds_List extends /*Sherlock*/ Fragment implements CustomAdapt
               @Override
               public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                 holder.pd.setVisibility(View.GONE);
-                holder.iv_image.setImageDrawable(getResources().getDrawable(R.drawable.defaultimage));
+                holder.iv_image.setImageDrawable(
+                    getResources().getDrawable(R.drawable.defaultimage));
               }
 
               @Override

@@ -441,7 +441,7 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
     } else Utility.showToast(act, act.getString(R.string.alert_need_internet_connection));
     ((TextView) myFragmentView.findViewById(R.id.tv_title)).setText(Ads.getTitle());
     ((TextView) myFragmentView.findViewById(R.id.tv_date))
-        .setText(act.getString(R.string.date) + " :" + Ads.getStartDate());
+        .setText(Ads.getStartDate());
     // CheckPosition(iPos);
     IsFavorite();
   }
