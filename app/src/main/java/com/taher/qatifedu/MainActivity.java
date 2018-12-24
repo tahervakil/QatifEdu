@@ -84,19 +84,19 @@ public class MainActivity extends AppCompatActivity {
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
+        /*DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-        wm.getDefaultDisplay().getMetrics(metrics);
+        wm.getDefaultDisplay().getMetrics(metrics);*/
 
         if (configuration.fontScale > 1 || configuration.fontScale < 1) {
             configuration.fontScale = (float) 1;
         }
 
-        if (configuration.densityDpi > 480 || configuration.densityDpi < 480) {
+        /*if (configuration.densityDpi > 480 || configuration.densityDpi < 480) {
             configuration.densityDpi = 480;
-        }
+        }*/
 
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
 
         new FetchEvent_Data().execute();
@@ -146,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         View view = getLayoutInflater().inflate(R.layout.header, null);
 
+        adjustFontScale(view.getResources().getConfiguration());
+        actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(view, layoutParams);
         Toolbar parent = (Toolbar) view.getParent();
         parent.setContentInsetsAbsolute(0, 0);

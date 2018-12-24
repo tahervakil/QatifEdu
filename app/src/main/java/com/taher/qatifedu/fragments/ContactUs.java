@@ -304,7 +304,7 @@ public class ContactUs extends Fragment {
             if (ContactUs != null) {
                 alContactUsDataMain.add(ContactUs);
                 btn_Phone.setText(alContactUsDataMain.get(0).getPhone());
-                btn_Website.setText(alContactUsDataMain.get(0).getWebsite().substring(8));
+                //btn_Website.setText(alContactUsDataMain.get(0).getWebsite().substring(8));
             }
 
         }

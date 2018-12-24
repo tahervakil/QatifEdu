@@ -29,6 +29,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -39,6 +40,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -97,10 +99,33 @@ public class Ads extends Fragment {
         this.context = context;
     }
 
+    public void adjustFontScale(Configuration configuration) {
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+
+        /*DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metrics);*/
+
+        if (configuration.fontScale > 1 || configuration.fontScale < 1) {
+            configuration.fontScale = (float) 1;
+        }
+
+        /*if (configuration.densityDpi > 480 || configuration.densityDpi < 480) {
+            configuration.densityDpi = 480;
+        }*/
+
+        metrics.scaledDensity = configuration.fontScale * metrics.density;
+        getActivity().getBaseContext().getResources().updateConfiguration(configuration, metrics);
+    }
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         appCompatActivity = (AppCompatActivity) getActivity();
+       // adjustFontScale(getActivity().getResources().getConfiguration());
 
         if (myFragmentView == null) {
             Log.i("ADS", "AM I GETTING CALLED ON CREATE VIEW");
@@ -728,7 +753,7 @@ public class Ads extends Fragment {
 
             int ROW_NUMBER = 4;
 
-            int cellHeight = StrictMath.max(parent.getHeight() / ROW_NUMBER - parent.getContext().getResources().getDimensionPixelOffset(R.dimen.bootstrap_badge_default_size), 320);
+            //int cellHeight = StrictMath.max(parent.getHeight() / ROW_NUMBER - parent.getContext().getResources().getDimensionPixelOffset(R.dimen.bootstrap_badge_default_size), 320);
             AbsListView.LayoutParams param = new AbsListView.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     parent.getHeight() / ROW_NUMBER);
@@ -764,17 +789,10 @@ public class Ads extends Fragment {
                 }
 
                 if (company.getParentId() != 0 && company.getSubCategoryType() == 0) {
-                    Log.i(
-                            "ADS",
-                            "This is the unread value of Company inside "
-                                    + company.getUnread()
-                                    + " - "
-                                    + company.getName());
+
                     unreadCount += company.getUnread();
                 }
             }
-
-            Log.i("ADS", "COMPANY NAME AND COUNT " + company.getName() + " -- " + unreadCount);
 
             if (unreadCount == 0) {
                 tv_unread.setVisibility(View.GONE);

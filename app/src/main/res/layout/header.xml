@@ -74,7 +74,7 @@
         android:textStyle="bold"
         custom:layout_constraintBottom_toBottomOf="parent"
         custom:layout_constraintEnd_toEndOf="parent"
-        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintStart_toStartOf="@+id/calendar"
         custom:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
