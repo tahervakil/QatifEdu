@@ -158,7 +158,7 @@ public class New_Details extends /*Sherlock*/ Fragment {
                       + "http://qatifedu.com/cmsQatifedu/frmNews.aspx?id="
                       + news.getId()
                       + "\n"
-                      + "(تطبيق صفوى الاعلانية)");
+                      + "(تطبيق تعليم القطيف)");
               startActivityForResult(Intent.createChooser(sharingIntent, "Share via"), 1);
             }
           });

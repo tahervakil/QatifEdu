@@ -63,7 +63,7 @@
     <string name="news_image_url">http://qatifedu.com/cmsQatifedu/Upload/News/</string>
     <string name="ads_image_url">http://qatifedu.com/cmsQatifedu/Upload/Ads/</string>
     <string name="ads_detail_url">http://qatifedu.com/cmsQatifedu/Services/frmGetAdsDetail.aspx?ID=</string>
-    <string name="events_details_url">http://qatifedu.com/cmsQatifedu/Services/frmGetEvents.aspx</string>
+    <string name="events_details_url">http://qatifedu.com/cmsQatifedu/Services/frmGetEvents.aspx?lastChange=</string>
     <string name="notification_channel_id">default</string>
     <string name="todo">TODO</string>
 </resources>

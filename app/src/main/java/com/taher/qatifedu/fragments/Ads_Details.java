@@ -156,12 +156,9 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, Ads.getTitle());
             sharingIntent.putExtra(
                 android.content.Intent.EXTRA_TEXT,
-                Ads.getTitle()
-                    + "\n"
-                    + "http://qatifedu.com/cmsQatifedu/frmAds.aspx?id="
-                    + Ads.getId()
-                    + "\n"
-                    + "(تطبيق صفوى الاعلانية)");
+                /*Ads.getTitle()
+                + "\n"*/
+                "http://qatifedu.com/cmsQatifedu/frmAds.aspx?id=" + Ads.getId());
             startActivityForResult(Intent.createChooser(sharingIntent, "Share via"), 1);
           }
         });
@@ -356,12 +353,25 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
                   image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
                 }
               });
+        } else {
+          imageLoader.displayImage("drawable://" + R.drawable.banner_image, image);
         }
 
         ln_Banner.addView(image);
       }
-
-      total_positive = alBannersMainDataList.size() * width;
+      if (alBannersMainDataList.size() == 0) {
+        final ImageView image = new ImageView(getActivity());
+        LayoutParams param = new LayoutParams(width, height);
+        image.setScaleType(ImageView.ScaleType.FIT_XY);
+        image.setLayoutParams(param);
+        image.setTag(0);
+        imageLoader.displayImage("drawable://" + R.drawable.banner_image, image);
+        // image.setImageDrawable(getResources().getDrawable(R.drawable.banner_image));
+        ln_Banner.addView(image);
+        total_positive = 1 * width;
+      } else {
+        total_positive = alBannersMainDataList.size() * width;
+      }
 
       ln_Banner.scrollBy(total_positive, 0);
 
@@ -371,8 +381,11 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
         handler.postDelayed(runnable, 0);
 
       } else {
-
-        total_positive = alBannersMainDataList.size() * width;
+        if (alBannersMainDataList.size() == 0) {
+          total_positive = 1 * width;
+        } else {
+          total_positive = alBannersMainDataList.size() * width;
+        }
       }
     } catch (Exception ex) {
     }
@@ -410,6 +423,7 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
     webView.getSettings().setPluginState(PluginState.ON);
     webView.getSettings().setJavaScriptEnabled(true);
     webView.setInitialScale(165);
+    webView.getSettings().setUseWideViewPort(true);
 
     webView.setFragment(Ads_DetailsFrag);
     webView.setWebChromeClient(new WebChromeClient());
@@ -440,8 +454,7 @@ public class Ads_Details extends /*Sherlock*/ Fragment {
       new ViewCountLoader().execute(new Void[] {null});
     } else Utility.showToast(act, act.getString(R.string.alert_need_internet_connection));
     ((TextView) myFragmentView.findViewById(R.id.tv_title)).setText(Ads.getTitle());
-    ((TextView) myFragmentView.findViewById(R.id.tv_date))
-        .setText(Ads.getStartDate());
+    ((TextView) myFragmentView.findViewById(R.id.tv_date)).setText(Ads.getStartDate());
     // CheckPosition(iPos);
     IsFavorite();
   }

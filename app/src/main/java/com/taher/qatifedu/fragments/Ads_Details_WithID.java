@@ -155,7 +155,7 @@ public class Ads_Details_WithID extends /*Sherlock*/ Fragment {
                     + "http://qatifedu.com/cmsQatifedu/frmAds.aspx?id="
                     + Ads.getId()
                     + "\n"
-                    + "(تطبيق صفوى الاعلانية)");
+                    + "(تطبيق تعليم القطيف)");
             startActivityForResult(Intent.createChooser(sharingIntent, "Share via"), 1);
           }
         });

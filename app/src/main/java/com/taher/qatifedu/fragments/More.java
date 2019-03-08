@@ -190,7 +190,7 @@ public class More extends /*Sherlock*/ Fragment {
                     String shareBody =
                         "http://qatifedu.com/cmsQatifedu/index1.htm \nشاركنا و استفيد من خدمات التطبيق";
                     sharingIntent.putExtra(
-                        android.content.Intent.EXTRA_SUBJECT, "مشاركة تطبيق صفوى الاعلانية");
+                        android.content.Intent.EXTRA_SUBJECT, "مشاركة تطبيق تعليم القطيف");
                     sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                     startActivityForResult(Intent.createChooser(sharingIntent, "Share via"), 1);
                   } catch (Exception e) {
