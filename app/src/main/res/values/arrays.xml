@@ -2,26 +2,18 @@
 <resources>
 
     <string-array name="nav_menu">
-        <item>احدث الاعلانات</item>
         <item>الاقسام</item>
         <item>المفضلة</item>
         <item>المزيد</item>
-        <item>قيم التطبيق</item>
         <item>اتصل بنا</item>
         <item>ارسل لنا</item>
         <item>الاعدادات</item>
-        
+
     </string-array>
-   
-  <string-array name="more_items">
-        <item >الهاتف</item>
-        <item >البريد الالكتروني</item>
-        <item >الموقع الالكتروني</item>
-        <item >تويتر</item>
-        <item >انستغرام</item>
-        <item >يوتيوب</item> 
-        <item >مشاركة تطبيق صفوى الاعلانية</item>
-        <item >الصفحات العامة</item>
-  
- </string-array>
+
+    <string-array name="more_items">
+        <item>مشاركة تطبيق تعليم القطيف</item>
+        <item>الصفحات العامة</item>
+
+    </string-array>
 </resources>

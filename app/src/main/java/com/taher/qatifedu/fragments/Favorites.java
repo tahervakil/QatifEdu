@@ -2,10 +2,13 @@ package com.taher.qatifedu.fragments;
 
 /*import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;*/
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.taher.qatifedu.R;
+import com.taher.qatifedu.UILApplication;
 import com.taher.qatifedu.utility.Constants;
 
-        import android.database.DataSetObserver;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,95 +21,100 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class Favorites extends /*Sherlock*/Fragment {
+public class Favorites extends /*Sherlock*/ Fragment {
 
-	public Favorites() {
-	}
+  public Favorites() {}
 
-	private ViewPager viewpager;
-	private FragmentStatePagerAdapter adapterViewPager;
-	private String name;
-	private  /*SherlockFragment*/AppCompatActivity act;
-	private View rootView;
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		act=/*(SherlockFragmentActivity) */(AppCompatActivity)getActivity();	  
-		rootView = inflater.inflate(R.layout.favorite, container,false);
-		viewpager = (ViewPager) rootView.findViewById(R.id.viewpager);
-		viewpager.setOffscreenPageLimit(2);
-		adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
+  private ViewPager viewpager;
+  private FragmentStatePagerAdapter adapterViewPager;
+  private String name;
+  private /*SherlockFragment*/ AppCompatActivity act;
+  private View rootView;
 
-		viewpager.setAdapter(adapterViewPager);
-		Bundle bundle = this.getArguments();
-		name=bundle.getString(Constants.NAME);
-		 ((TextView) act.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle)).setText(name);
-	   
+  @Override
+  public View onCreateView(
+      LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    act = /*(SherlockFragmentActivity) */ (AppCompatActivity) getActivity();
+    rootView = inflater.inflate(R.layout.favorite, container, false);
+    viewpager = (ViewPager) rootView.findViewById(R.id.viewpager);
+    viewpager.setOffscreenPageLimit(2);
+    adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
 
-		return rootView;
-	}
+    viewpager.setAdapter(adapterViewPager);
+    Bundle bundle = this.getArguments();
+    name = bundle.getString(Constants.NAME);
+    ((TextView) act.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle)).setText(name);
 
-	
-	 @Override
-	  public void onResume(){
-		((TextView) act.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle)).setText(name);
-		((ImageButton) act.getSupportActionBar().getCustomView().findViewById(R.id.btn_refreash)).setVisibility(View.GONE);
-		viewpager = (ViewPager) rootView.findViewById(R.id.viewpager);
-		viewpager.setOffscreenPageLimit(2);
-		adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
-		super.onResume();
-	  }
-	 
+    return rootView;
+  }
 
-	public static class MyPagerAdapter extends FragmentStatePagerAdapter {
-		private static int NUM_ITEMS = 1;
+  @Override
+  public void onResume() {
+    ((TextView) act.getSupportActionBar().getCustomView().findViewById(R.id.tvTitle)).setText(name);
+    ((ImageButton) act.getSupportActionBar().getCustomView().findViewById(R.id.btn_refresh))
+        .setVisibility(View.GONE);
+    act.getSupportActionBar()
+        .getCustomView()
+        .findViewById(R.id.extra_category)
+        .setVisibility(View.GONE);
+    act.getSupportActionBar().getCustomView().findViewById(R.id.calendar).setVisibility(View.GONE);
+    viewpager = (ViewPager) rootView.findViewById(R.id.viewpager);
+    viewpager.setOffscreenPageLimit(2);
+    adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
+    super.onResume();
+    final Tracker tracker = new UILApplication().getDefaultTracker();
 
-		public MyPagerAdapter(FragmentManager fragmentManager) {
-			super(fragmentManager);
-		}
+    if (tracker != null) {
+      tracker.setScreenName(getClass().getSimpleName());
+      tracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+  }
 
-		@Override
-		public int getCount() {
-			return NUM_ITEMS;
-		}
+  public static class MyPagerAdapter extends FragmentStatePagerAdapter {
+    private static int NUM_ITEMS = 1;
 
-		// Returns the fragment to display for that page
-		@Override
-		public Fragment getItem(int position) {
-			switch (position) {
-			/*case 0: 
-			return  new NewsFavorite_List();
-			*/
-			case 0: 
-				return  new AdsFavorite_List();
+    public MyPagerAdapter(FragmentManager fragmentManager) {
+      super(fragmentManager);
+    }
 
-			default:
-				return null;
-			}
-		}
+    @Override
+    public int getCount() {
+      return NUM_ITEMS;
+    }
 
-		@Override
-		public void unregisterDataSetObserver(DataSetObserver observer) {
-			if (observer != null) {
-				super.unregisterDataSetObserver(observer);
-			}
-		}
+    // Returns the fragment to display for that page
+    @Override
+    public Fragment getItem(int position) {
+      switch (position) {
+          /*case 0:
+          return  new NewsFavorite_List();
+          */
+        case 0:
+          return new AdsFavorite_List();
 
-		@Override
-		public CharSequence getPageTitle(int position) {
+        default:
+          return null;
+      }
+    }
 
-			if (position == 0) {
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+      if (observer != null) {
+        super.unregisterDataSetObserver(observer);
+      }
+    }
 
-				return "مجتمع";
+    @Override
+    public CharSequence getPageTitle(int position) {
 
-			} else {
+      if (position == 0) {
 
-				return "اعلانات";
+        return "مجتمع";
 
-			}
+      } else {
 
-		}
-
-	}
-
+        return "اعلانات";
+      }
+    }
+  }
 }

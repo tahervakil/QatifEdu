@@ -1,52 +1,103 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:gravity="center"
-android:background="@drawable/headerback"
-xmlns:foo="http://schemas.android.com/apk/res-auto"
-xmlns:custom="http://schemas.android.com/apk/res/com.taher.qatifedu" >
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-   <RelativeLayout
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:layout_gravity="center"
-	android:paddingLeft="10dp"
-	android:paddingRight="10dp">
-	
-       
-        <ImageButton android:id="@+id/btn_refreash"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@color/transparent"
-		android:src="@drawable/refresh"
-		android:scaleType="fitXY"
-		android:layout_alignParentLeft="true"
-	    android:layout_centerVertical="true"
-	    android:adjustViewBounds="true"/>
-        
-  
- <com.taher.qatifedu.utility.CustomTextView
-    android:id="@+id/tvTitle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"   
-    android:textAppearance="@android:style/TextAppearance.Medium"
- 	android:textSize="20dp"
-    android:gravity="center"
-    android:singleLine="true"
-    android:ellipsize="end"
-    android:textColor="@color/black"
-    android:layout_centerInParent="true"
-    custom:fontAssetName="advertisingbold.ttf"/>
+    <ImageButton
+        android:id="@+id/btn_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="7dp"
+        android:adjustViewBounds="true"
+        android:background="@color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/refresh"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/extra_category"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/extra_category"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/calendar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/calendar"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintStart_toEndOf="@+id/extra_category"
+        custom:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginRight="95dp"
+        android:layout_marginBottom="16dp"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="@+id/calendar"
+        custom:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_sidedrawer"
+        android:layout_width="33dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:background="@color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/menu"
+        custom:layout_constraintBottom_toBottomOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintTop_toTopOf="parent" />
 
 
- <ImageButton android:id="@+id/btn_sidedrawer"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@color/transparent"
-		android:src="@drawable/menu"
-		android:layout_alignParentRight="true"
-	    android:layout_centerVertical="true"
-	    android:adjustViewBounds="true" />
- </RelativeLayout>
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="fill_horizontal"
+        style="@style/Divider"/>-->
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

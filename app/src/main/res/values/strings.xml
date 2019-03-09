@@ -1,8 +1,8 @@
 <resources>
 
-    <string name="app_name">Qatifedu</string>
-   	<string name="alert_need_internet_connection">مطلوب اتصال بالإنترنت لاستخدام هذا التطبيق. يرجى التحقق من الإعدادات الخاصة بك وحاول مرة أخرى.</string>
-  	<string name="pleaseWait">يرجى الانتظار</string>
+    <string name="app_name">تعليم القطيف</string>
+    <string name="alert_need_internet_connection">مطلوب اتصال بالإنترنت لاستخدام هذا التطبيق. يرجى التحقق من الإعدادات الخاصة بك وحاول مرة أخرى.</string>
+    <string name="pleaseWait">يرجى الانتظار</string>
     <string name="phonecall_msg">هل انت متأكد من عملية الإتصال</string>
     <string name="deletenews_msg">هل تريد حذف الخبر</string>
     <string name="deleteallnews_msg">هل تريد حذف جميع الاخبار</string>
@@ -12,19 +12,19 @@
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
     <string name="submit">اختار</string>
-    <string name="name">الاسم</string>  
-    <string name="mobile">جوال</string> 
-    <string name="category">القسم</string>  
-    <string name="subject">عنوان الرسالة</string> 
-    <string name="body">نص الرسالة</string> 
-    <string name="send">ارسال</string>   
-    <string name="email">ايميل</string>   
-    <string name="validemail">من فضلك قم بادخال ايميل صالح</string> 
-    <string name="enter_email">من فضلك قم بادخال ايميل </string> 
-    <string name="enter_name">من فضلك قم بادخال اسمك</string>   
-    <string name="enter_mobile">من فضلك قم بادخال رقم هاتفك</string> 
-    <string name="enter_subject">من فضلك قم بادخال عنوان الرسالة</string>   
-    <string name="enter_body">من فضلك قم بادخال الرسالة</string>   
+    <string name="name"><b>الاسم</b></string>
+    <string name="mobile"><b>جوال</b></string>
+    <string name="category">القسم</string>
+    <string name="subject">عنوان الرسالة</string>
+    <string name="body"><font size="28">نص الرسالة</font></string>
+    <string name="send">ارسال</string>
+    <string name="email">ايميل</string>
+    <string name="validemail">من فضلك قم بادخال ايميل صالح</string>
+    <string name="enter_email">من فضلك قم بادخال ايميل </string>
+    <string name="enter_name">من فضلك قم بادخال اسمك</string>
+    <string name="enter_mobile">من فضلك قم بادخال رقم هاتفك</string>
+    <string name="enter_subject">من فضلك قم بادخال عنوان الرسالة</string>
+    <string name="enter_body">من فضلك قم بادخال الرسالة</string>
     <string name="error">لقد حصل خطا,الرجاء المحاولة مرة اخرى</string>
     <string name="select">اختر</string>
     <string name="enter_section">من فضلك قم باختيار قسم</string>
@@ -32,37 +32,38 @@
     <string name="comunity">مجتمع</string>
     <string name="ads">اعلانات</string>
     <string name="nodata_found">لا توجد بيانات</string>
-     <string name="details">التفاصيل</string>
-    
-    
-      <string name="date">تاريخ الإعلان</string>
+    <string name="details">التفاصيل</string>
+
+
+    <string name="date">تاريخ الإعلان</string>
     <string name="views">عدد المشاهدات</string>
-     <string name="notifications">صوت الاشعارات</string>
-     <string name="complete_number">لايقبل الارسال الا باكتمال الارقام العشرة كاملة من قبل المُرسل</string>
+    <string name="notifications">صوت الاشعارات</string>
+    <string name="complete_number">لايقبل الارسال الا باكتمال الارقام العشرة كاملة من قبل المُرسل</string>
     <string name="viewadv">لعروض الاعلانات و الاستفسار</string>
-     <string name="ourphone">هاتفنا</string>
-     <string name="pressnumber">اضغط على الرقم</string>
-     <string name="website">الموقع الالكتروني</string>
-     <string name="presswebsite">اضغط على الموقع</string>
-     <string name="social">وسائل التواصل الاجتماعي</string>
-       <string name="pressicon">اضغط على الصورة لمتابعنا</string>
-       <string name="number">0567654432</string>
-      <string name="emailurl">www.qatifedu.com</string>
-    
-   
-           <!-- url -->
-  <string name="general_url">http://qatifedu.com/cmsQatifedu/Services/frmGeneral.aspx?lastChange=</string>
- <string name="sections_url">http://qatifedu.com/cmsQatifedu/Services/frmGetSection.aspx?lastChange=</string>
- <string name="companies_url">http://qatifedu.com/cmsQatifedu/Services/frmGetCompany.aspx?lastChange=</string>
-  <string name="banner_url">http://qatifedu.com/cmsQatifedu/Services/frmGetBanners.aspx?lastChange=</string>
-   <string name="tikernews_url">http://qatifedu.com/cmsQatifedu/Services/frmSNews.aspx?lastChange=</string>
-   <string name="section_image_url">http://qatifedu.com/cmsQatifedu/Upload/Sections/</string>
+    <string name="ourphone">هاتفنا</string>
+    <string name="pressnumber">اضغط على الرقم</string>
+    <string name="website">الموقع الالكتروني</string>
+    <string name="presswebsite">اضغط على الموقع</string>
+    <string name="social">وسائل التواصل الاجتماعي</string>
+    <string name="pressicon">اضغط على الصورة لمتابعنا</string>
+    <string name="number">0567654432</string>
+    <string name="emailurl">www.qatifedu.com</string>
+
+
+    <!-- url -->
+    <string name="general_url">http://qatifedu.com/cmsQatifedu/Services/frmGeneral.aspx?lastChange=</string>
+    <string name="sections_url">http://qatifedu.com/cmsQatifedu/Services/frmGetSection.aspx?lastChange=</string>
+    <string name="companies_url">http://qatifedu.com/cmsQatifedu/Services/frmGetCompany.aspx?lastChange=</string>
+    <string name="banner_url">http://qatifedu.com/cmsQatifedu/Services/frmGetBanners.aspx?lastChange=</string>
+    <string name="tikernews_url">http://qatifedu.com/cmsQatifedu/Services/frmSNews.aspx?lastChange=</string>
+    <string name="section_image_url">http://qatifedu.com/cmsQatifedu/Upload/Sections/</string>
     <string name="companies_image_url">http://qatifedu.com/cmsQatifedu/Upload/Company/</string>
-   <string name="news_url">http://qatifedu.com/cmsQatifedu/Services/frmGetNews.aspx?lastChange=</string>
-   <string name="ads_url">http://qatifedu.com/cmsQatifedu/Services/frmGetAds.aspx?lastChange=</string>
-   <string name="news_image_url">http://qatifedu.com/cmsQatifedu/Upload/News/</string>
-  <string name="ads_image_url">http://qatifedu.com/cmsQatifedu/Upload/Ads/</string>
-   <string name="ads_detail_url"> http://qatifedu.com/cmsQatifedu/Services/frmGetAdsDetail.aspx?ID=</string>
+    <string name="news_url">http://qatifedu.com/cmsQatifedu/Services/frmGetNews.aspx?lastChange=</string>
+    <string name="ads_url">http://qatifedu.com/cmsQatifedu/Services/frmGetAds.aspx?lastChange=</string>
+    <string name="news_image_url">http://qatifedu.com/cmsQatifedu/Upload/News/</string>
+    <string name="ads_image_url">http://qatifedu.com/cmsQatifedu/Upload/Ads/</string>
+    <string name="ads_detail_url">http://qatifedu.com/cmsQatifedu/Services/frmGetAdsDetail.aspx?ID=</string>
+    <string name="events_details_url">http://qatifedu.com/cmsQatifedu/Services/frmGetEvents.aspx?lastChange=</string>
+    <string name="notification_channel_id">default</string>
+    <string name="todo">TODO</string>
 </resources>
-
-

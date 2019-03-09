@@ -11,14 +11,15 @@ import java.util.Stack;
 public class Constants {
     public static final String TAG = "Qatifedu";
     public static final String APPNAME = "Qatifedu";
-    public static final String DATABASE_NAME = "qatifedu";
-    public final static String DATABASE_PATH = "data/data/com.qatifedu.taher/databases/";
+    public static final String DATABASE_NAME = "qatifedu1";
+    public static final String DATABASE_PATH = "data/data/com.qatifedu.taher/databases/";
     public static final String LATESTCLIENTUPDATE_TABLE = "LatestClientUpdate";
     public static final String GENERAL_TABLE = "General";
     public static final String SECTIONS_TABLE = "Sections";
     public static final String COMPANIES_TABLE = "Companies";
     public static final String BANNER_TABLE = "Banner";
     public static final String TIKERNEWS_TABLE = "TikerNews";
+    public static final String EVENT_TABLE = "Events";
     public static final String NEWS_TABLE = "News";
     public static final String ADS_TABLE = "Ads";
     public static final String ADS_FAVORITE_TABLE = "AdsFavorite";
@@ -50,6 +51,7 @@ public class Constants {
     public static final String BRANDNAME = "Brand_Name";
     public static final String LOGO = "Logo";
     public static final String LASTCHANGE = "LastChange";
+    public static final String LASTCHANGETYPE = "LastChangeType";
     public static final String VIEWD = "Viewd";
     public static final String MODELNAME = "Model_Name";
     public static final String PRICE = "Price";
@@ -90,12 +92,12 @@ public class Constants {
     public static final String STATUS = "Status";
     public static final String ISFIRST = "IsFirst";
     public static final String NOOFVIEWS = "NoOfViews";
+    public static final String PARENTID = "ParentID";
+    public static final String SUB_CATEGORY_TYPE = "type";
 
-    public static Stack<Fragment> NFragmentStack = new Stack<Fragment>();
-    public static Stack<Fragment> MFragmentStack = new Stack<Fragment>();
-    public static Stack<Fragment> FFragmentStack = new Stack<Fragment>();
-    public static Stack<Fragment> MOFragmentStack = new Stack<Fragment>();
-    public static Stack<Fragment> AFragmentStack = new Stack<Fragment>();
-
-
+    public static Stack<Fragment> NFragmentStack = new Stack<>();
+    public static Stack<Fragment> MFragmentStack = new Stack<>();
+    public static Stack<Fragment> FFragmentStack = new Stack<>();
+    public static Stack<Fragment> MOFragmentStack = new Stack<>();
+    public static Stack<Fragment> AFragmentStack = new Stack<>();
 }

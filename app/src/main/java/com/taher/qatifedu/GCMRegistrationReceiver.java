@@ -115,7 +115,7 @@ public class GCMRegistrationReceiver extends BroadcastReceiver {
 			notificationIntent.putExtra(Constants.ID, Integer.parseInt(strID));
 			notificationIntent.setAction("dummy_action_" + notificationNumber);
 			PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-			Notification notification = new Notification(R.drawable.ic_launcher, tickerText, when);
+			Notification notification = new Notification(R.mipmap.ic_launcher, tickerText, when);
 			
 			//notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 			notification.flags = Notification.FLAG_AUTO_CANCEL;	

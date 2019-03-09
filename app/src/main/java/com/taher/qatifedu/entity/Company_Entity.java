@@ -1,68 +1,92 @@
 package com.taher.qatifedu.entity;
 
-public class Company_Entity {
+import android.os.Parcelable;
 
-	private String id = null , name = null,logo=null,lastChange=null, 
-	 lastChangeType=null;
-	private int unread,status=1;
-	public Company_Entity() {}
+import java.io.Serializable;
 
-	public String getId() {
-		return id;
-	}
+public class Company_Entity implements Serializable {
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  private String id = null;
+  private String name = null;
+  private String logo = null;
+  private String lastChange = null;
+  private String lastChangeType = null;
+  private int parentId;
+  private int unread;
+  private int status = 1;
+  private int subCategoryType;
 
-	public int getUnread() {
-		return unread;
-	}
+  public Company_Entity() {}
 
-	public void setUnread(int unread) {
-		this.unread = unread;
-	}
-	
-	public String getName() {
-		return name;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public String getLogo() {
-		return logo;
-	}
+  public int getUnread() {
+    return unread;
+  }
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-	
-	public String getLastChange() {
-		return lastChange;
-	}
+  public void setUnread(int unread) {
+    this.unread = unread;
+  }
 
-	public void setLastChange(String lastChange) {
-		this.lastChange = lastChange;
-	}
-	
-	public String getLastChangeType() {
-		return lastChangeType;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setLastChangeType(String lastChangeType) {
-		this.lastChangeType = lastChangeType;
-	}
-	
-	
-	public int getStatus() {
-		return status;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+  public String getLogo() {
+    return logo;
+  }
 
+  public void setLogo(String logo) {
+    this.logo = logo;
+  }
 
+  public String getLastChange() {
+    return lastChange;
+  }
+
+  public void setLastChange(String lastChange) {
+    this.lastChange = lastChange;
+  }
+
+  public String getLastChangeType() {
+    return lastChangeType;
+  }
+
+  public void setLastChangeType(String lastChangeType) {
+    this.lastChangeType = lastChangeType;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
+  }
+
+  public int getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(int parentId) {
+    this.parentId = parentId;
+  }
+
+  public int getSubCategoryType() {
+    return subCategoryType;
+  }
+
+  public void setSubCategoryType(int subCategoryType) {
+    this.subCategoryType = subCategoryType;
+  }
 }
